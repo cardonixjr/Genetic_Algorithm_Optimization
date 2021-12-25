@@ -10,8 +10,8 @@ max_y = 3;
 min_y = -3;
 
 %{
-  A populacao deste Algoritmo genetio sera modelada em uma matriz, onde as
-cada linha eh um individuo, e as colunas representam, respectivamente, o genotipo, 
+ A populacao deste Algoritmo genetico sera modelada em uma matriz, onde
+cada linha corresponde a um individuo, e cada colunas representam, respectivamente, o genotipo, 
 o fenotipo, o f(x) e a probabilidade de selecao para cruzamento.
 
 Cada individuo possui um genotipo binario representando suas variaveis:
@@ -24,8 +24,8 @@ f(x) eh o resultado da aplicacao das variaveis do genotipo na funcao otimizada.
 A probabilidade de cruzamento define a chance que um individuo tem de ser escolhido
 para cruzar com outros.
 
-Alem disso, sera separado uma Elitizacao de um individuo, ou seja, o 
-melhore individuo permanecera inalterado para a proxima geracao.
+Alem disso, sera separada uma Elitizacao de um individuo, ou seja, o 
+melhor individuo permanecera inalterado para a proxima geracao.
 %}
 
 num_individuos = 10;

@@ -139,6 +139,13 @@ def genetic_algorithm_optimization(f, generations, number_of_variables, variable
 					population[i].is_elite = True
 					elite = i
 	
+			if opt_type == "max":
+				if population[i].fx > population[elite].fx:
+					population[elite].is_elite = False
+					population[i].is_elite = True
+					elite = i
+
+
 		# Calculates the crossing probability for each individual
 		for i in range(population_lenght):
 			population[i].change_prob(total)
@@ -146,7 +153,11 @@ def genetic_algorithm_optimization(f, generations, number_of_variables, variable
 		# Cross the individuals
 		prob_array = []
 		for i in range(population_lenght):
-			probability = int(round(population[i].prob*100))
+			if opt_type == "min":
+				probability = int(round(population[i].prob*100))
+			elif opt_type == "max":
+				probability = int(round((1-population[i].prob)*100))
+
 			for j in range(probability):
 				prob_array.append(i)
 
@@ -166,11 +177,11 @@ def genetic_algorithm_optimization(f, generations, number_of_variables, variable
 
 
 if __name__ == "__main__":
-	#f = lambda x,y: -20*np.exp(-0.2*np.sqrt(0.5*(x**2 + y**2))) - np.exp(0.5*(np.cos(2*np.pi*x) + np.cos(2*np.pi*y))) + np.e + 20
 
-	f = lambda x,y: (x + 2*y - 7)**2 + (2*x + y - 5)**2
-	#my_plot(f, 0, 10, 0, 10, markers = [])
+	f = lambda x,y:  -((x + 2*y - 7)**2 + (2*x + y - 5)**2)
+	#f = lambda x,y: x**2 - y**2
 
-	best = genetic_algorithm_optimization(f, 1000, 2, "001001", 50)
+	best = genetic_algorithm_optimization(f, 1000, 2, "00010001", 50, opt_type = "max")
 	print("phenotype: " + best.phenotype)
 	print("fx: " + str(best.fx))
+	my_plot(f, 0, 10, 0, 10, markers = [])
